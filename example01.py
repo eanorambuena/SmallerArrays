@@ -2,7 +2,7 @@ import sys
 
 from pysa import IntArray
 
-array = IntArray(10)
+array = IntArray()
 builtin_list = [100, 200, 300, 400, 500]
 
 for element in builtin_list:
@@ -10,7 +10,7 @@ for element in builtin_list:
 
 print(f"""
 IntArray: {array}
-IntArray memory usage: {array.get_size()}
+IntArray memory usage: {array.size}
 
 Built-in list: {builtin_list}
 Built-in list memory usage: {sys.getsizeof(builtin_list)}

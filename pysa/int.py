@@ -1,46 +1,49 @@
 class IntArray():
 
-    def __init__(self, size = 16, auto_grow = True):
+    def __init__(self, items_size = 1, auto_resize = True):
         self.array = 0
         self.empty = True
-        self.size = size
+        self.items_size = items_size
         self.items = 0
-        self.auto_grow_state = auto_grow
+        self.auto_resize = auto_resize
 
     def __getitem__(self, index):
         return self.list[index]
+
+    def __len__(self):
+        return self.items
 
     def __str__(self):
         return str(self.list)
 
     def auto_grow(self, item):
 
-        if self.auto_grow_state:
+        if self.auto_resize:
             item_len = len(str(item))
 
-            if item_len > self.size:
-                self.size = item_len
+            if item_len > self.items_size:
+                self.items_size = item_len
 
     def append(self, element):
         self.empty = False
         self.auto_grow(element)
-        self.array = self.array * (10 ** self.size) + element
+        self.array = self.array * (10 ** self.items_size) + element
         self.items += 1
 
     @property
     def list(self):
         string = str(self.array)
-        factor = self.size - (len(string) % self.size)
-        result = "0" * (factor % self.size) + string
+        factor = self.items_size - (len(string) % self.items_size)
+        result = "0" * (factor % self.items_size) + string
 
-        if result == "0" * self.size and self.empty:
+        if result == "0" * self.items_size and self.empty:
             return []
 
         list_result = []
 
-        for i in range(len(result) // self.size):
-            lower = i * self.size
-            upper = (i + 1) * self.size
+        for i in range(len(result) // self.items_size):
+            lower = i * self.items_size
+            upper = (i + 1) * self.items_size
 
             sub = result[lower : upper]
 
@@ -49,11 +52,12 @@ class IntArray():
         return list_result
         
     def pop(self):
-        if len(str(self)) <= self.size:
+        if len(str(self)) <= self.items_size:
             self.empty = True
-        self.array = self.array // (10 ** self.size)
+        self.array = self.array // (10 ** self.items_size)
         self.items -= 1
 
-    def get_size(self):
+    @property
+    def size(self):
         import sys
         return sys.getsizeof(self)
