@@ -18,6 +18,13 @@ class IntArray():
             self.append(element)
 
     def __getitem__(self, index):
+
+        if self.dont_use_builtin_list:
+            lower = self.items_size * index
+            upper = self.items_size * (index + 1)
+            
+            return self.__format_array__()[lower : upper]
+
         return self.list[index]
 
     def __len__(self):
