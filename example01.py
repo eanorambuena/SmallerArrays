@@ -8,7 +8,7 @@ b = [1] * 10000
 for e in b:
     a.append(e)
 
-print("IntArray memory usage:", sys.getsizeof(a))
+print("IntArray memory usage:", a.get_size())
 print("Builtin List memory usage:", sys.getsizeof(b))
 
 print(a[4])

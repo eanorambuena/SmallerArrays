@@ -1,13 +1,23 @@
 class IntArray():
 
-    def __init__(self, size):
+    def __init__(self, size = 16, auto_grow = True):
         self.array = 0
         self.empty = True
         self.size = size
         self.items = 0
+        self.auto_grow_state = auto_grow
+
+    def auto_grow(self, item):
+
+        if self.auto_grow_state:
+            item_len = len(str(item))
+
+            if item_len > self.size:
+                self.size = item_len
 
     def append(self, element):
         self.empty = False
+        self.auto_grow(element)
         self.array = self.array * (10 ** self.size) + element
         self.items += 1
 
@@ -37,3 +47,7 @@ class IntArray():
         
     def __getitem__(self, index):
         return self.list[index]
+
+    def get_size(self):
+        import sys
+        return sys.getsizeof(self)
