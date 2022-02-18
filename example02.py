@@ -1,16 +1,16 @@
-from pysa import SmallArray, binary_to_ascii
-from pysa.utils import binary_to_string
 import sys
+from pysa import SmallArray
 
-a = SmallArray(10)
 word = "Pizza"
 
-for ch in word:
-    a.append(ch)
+a = SmallArray(10)
+
+for char in word:
+    a.append(char)
 
 print(f"""
 SmallArray: {a}
-Decoded SmallArray: '{binary_to_string(a)}'
+Decoded SmallArray: '{a.to_string()}'
 Size: {a.get_size()}
 
 Built-in string: '{word}'
