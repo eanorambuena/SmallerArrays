@@ -1,4 +1,4 @@
-from pysa.int import IntArray
+from pysa.numbers import IntArray
 from pysa.utils import binary_to_string
 
 class CharArray(IntArray):
