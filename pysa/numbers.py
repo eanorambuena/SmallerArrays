@@ -28,7 +28,6 @@ class IntArray():
         return self.list[index]
 
     def __setitem__(self, index, value):
-        
         pass
 
     def __len__(self):
@@ -52,6 +51,11 @@ class IntArray():
         self.auto_grow(element)
         self.array = self.array * (10 ** self.items_size) + element
         self.items += 1
+
+    def clear(self):
+        self.array = 0
+        self.items = 0
+        self.empty = True
 
     def __format_array__(self):
         string = str(self.array)
