@@ -2,13 +2,13 @@ import sys
 
 from pysa import IntArray
 
-a = IntArray(10)
-b = [1] * 10000
+array = IntArray(10)
+builtin_list = [1] * 10000
 
-for element in b:
-    a.append(element)
+for element in builtin_list:
+    array.append(element)
 
-print("IntArray memory usage:", a.get_size())
-print("Builtin List memory usage:", sys.getsizeof(b))
+print("IntArray memory usage:", array.get_size())
+print("Builtin list memory usage:", sys.getsizeof(builtin_list))
 
-print(a[4])
+print(array[4])

@@ -1,18 +1,17 @@
 import sys
 from pysa import CharArray
 
-word = "Pizza"
+array = CharArray(10)
+builtin_string = "Pizza"
 
-a = CharArray(10)
-
-for char in word:
-    a.append(char)
+for char in builtin_string:
+    array.append(char)
 
 print(f"""
-SmallArray: {a}
-Decoded SmallArray: '{a.to_string()}'
-Size: {a.get_size()}
+CharArray: {array}
+Decoded CharArray: '{array.to_string()}'
+CharArray memory usage: {array.get_size()}
 
-Built-in string: '{word}'
-Built-in string size: {sys.getsizeof(word)}
+Built-in string: '{builtin_string}'
+Built-in string memory usage: {sys.getsizeof(builtin_string)}
 """)
