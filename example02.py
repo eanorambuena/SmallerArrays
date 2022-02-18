@@ -1,9 +1,9 @@
 import sys
-from pysa import SmallArray
+from pysa import CharArray
 
 word = "Pizza"
 
-a = SmallArray(10)
+a = CharArray(10)
 
 for char in word:
     a.append(char)
