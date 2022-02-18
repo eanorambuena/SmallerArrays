@@ -1,11 +1,8 @@
 import sys
 from pysa import String
 
-string = String()
 builtin_string = "Supercalifragilisticexpialidocious"
-
-for char in builtin_string:
-    string.append(char)
+string = String(builtin_string)
 
 print(f"""
 String: '{string}'

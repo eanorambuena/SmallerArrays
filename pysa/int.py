@@ -1,11 +1,14 @@
 class IntArray():
 
-    def __init__(self, items_size = 1, auto_resize = True):
+    def __init__(self, iterable = None, items_size = 1, auto_resize = True):
         self.array = 0
         self.empty = True
         self.items_size = items_size
         self.items = 0
         self.auto_resize = auto_resize
+
+        for element in iterable:
+            self.append(element)
 
     def __getitem__(self, index):
         return self.list[index]

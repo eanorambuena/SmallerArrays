@@ -2,11 +2,8 @@ import sys
 
 from pysa import IntArray
 
-array = IntArray()
 builtin_list = [100, 200, 300, 400, 500]
-
-for element in builtin_list:
-    array.append(element)
+array = IntArray(builtin_list)
 
 print(f"""
 IntArray: {array}

@@ -1,11 +1,8 @@
 import sys
 from pysa import CharArray
 
-array = CharArray(10)
 builtin_string = "Pizza"
-
-for char in builtin_string:
-    array.append(char)
+array = CharArray(builtin_string)
 
 print(f"""
 CharArray: {array}

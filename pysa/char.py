@@ -3,8 +3,8 @@ from pysa.utils import binary_to_string
 
 class CharArray(IntArray):
 
-    def __init__(self, items_size = 8, auto_resize = False):
-        super().__init__(items_size, auto_resize)
+    def __init__(self, string = None, items_size = 8, auto_resize = False):
+        super().__init__(string, items_size, auto_resize)
 
     def append(self, element):
         str_element = str(element)
@@ -16,8 +16,8 @@ class CharArray(IntArray):
 
 class String(CharArray):
     
-    def __init__(self, items_size = 8, auto_resize = False):
-        super().__init__(items_size, auto_resize)
+    def __init__(self, string = None, items_size = 8, auto_resize = False):
+        super().__init__(string, items_size, auto_resize)
 
     def __str__(self):
         return self.to_string()
