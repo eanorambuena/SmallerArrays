@@ -22,10 +22,14 @@ class IntArray():
         if self.dont_use_builtin_list:
             lower = self.items_size * index
             upper = self.items_size * (index + 1)
-            
+
             return self.__format_array__()[lower : upper]
 
         return self.list[index]
+
+    def __setitem__(self, index, value):
+        
+        pass
 
     def __len__(self):
         return self.items
