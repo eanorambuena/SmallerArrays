@@ -64,3 +64,32 @@ class IntArray():
     def size(self):
         import sys
         return sys.getsizeof(self)
+
+class FloatArray(IntArray):
+
+    def __init__(
+        self,
+        iterable = None,
+        items_size = 1,
+        tail_size = 1,
+        auto_resize = True,
+        auto_tail_resize = True
+    ):
+        super().__init__(iterable, items_size, auto_resize)
+        self.tail_size = tail_size
+        self.auto_tail_resize = auto_tail_resize
+
+    def auto_grow_tail(self, item):
+
+        if self.auto_tail_resize:
+            str_item = str(item)
+            item_tail = str_item.split(".")[1]
+
+            tail_len = len(item_tail)
+
+            if tail_len > self.tail_size:
+                self.tail_size = tail_len
+    
+    def append(self, element):
+        self.auto_grow_tail(element)
+        super().append(element)
