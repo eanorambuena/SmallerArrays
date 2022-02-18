@@ -1,11 +1,18 @@
 class IntArray():
 
-    def __init__(self, iterable = None, items_size = 1, auto_resize = True):
+    def __init__(
+        self,
+        iterable = None,
+        items_size = 1,
+        auto_resize = True,
+        force_no_use_builtin_list = True
+    ):
         self.array = 0
         self.empty = True
         self.items_size = items_size
         self.items = 0
         self.auto_resize = auto_resize
+        self.dont_use_builtin_list = force_no_use_builtin_list
 
         for element in iterable:
             self.append(element)
@@ -17,6 +24,8 @@ class IntArray():
         return self.items
 
     def __str__(self):
+        if self.dont_use_builtin_list:
+            return self.str_without_builtin_lists
         return str(self.list)
 
     def auto_grow(self, item):
@@ -33,13 +42,48 @@ class IntArray():
         self.array = self.array * (10 ** self.items_size) + element
         self.items += 1
 
-    @property
-    def list(self):
+    def __format_array__(self):
         string = str(self.array)
         factor = self.items_size - (len(string) % self.items_size)
         result = "0" * (factor % self.items_size) + string
 
         if result == "0" * self.items_size and self.empty:
+            return ""
+
+        return result
+
+    @property
+    def str_without_builtin_lists(self):
+        result = self.__format_array__()
+
+        if result == "":
+            return "[]"
+
+        str_result = "["
+
+        last_iteration = len(result) // self.items_size - 1
+
+        for i in range(last_iteration + 1):
+            lower = i * self.items_size
+            upper = (i + 1) * self.items_size
+
+            sub = result[lower : upper]
+
+            str_result += sub
+
+            if i != last_iteration:
+                str_result += ", "
+
+            else:
+                str_result += "]"
+
+        return str_result
+
+    @property
+    def list(self):
+        result = self.__format_array__()
+
+        if result == "":
             return []
 
         list_result = []
@@ -75,10 +119,10 @@ class FloatArray(IntArray):
         auto_resize = True,
         auto_tail_resize = True
     ):
-        super().__init__(iterable, items_size, auto_resize)
         self.tail_size = tail_size
         self.auto_tail_resize = auto_tail_resize
-
+        super().__init__(iterable, items_size, auto_resize)
+        
     def auto_grow_tail(self, item):
 
         if self.auto_tail_resize:
@@ -92,4 +136,6 @@ class FloatArray(IntArray):
     
     def append(self, element):
         self.auto_grow_tail(element)
-        super().append(element)
+        amplificator = 10 ** self.tail_size
+
+        super().append(element * amplificator)
